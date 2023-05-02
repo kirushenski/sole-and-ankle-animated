@@ -20,12 +20,12 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <DesktopNav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
+          <NavLink href="/sale"><NavLinkWrapper data-name="Sale">Sale</NavLinkWrapper></NavLink>
+          <NavLink href="/new"><NavLinkWrapper data-name="New&nbsp;Releases">New&nbsp;Releases</NavLinkWrapper></NavLink>
+          <NavLink href="/men"><NavLinkWrapper data-name="Men">Men</NavLinkWrapper></NavLink>
+          <NavLink href="/women"><NavLinkWrapper data-name="Women">Women</NavLinkWrapper></NavLink>
+          <NavLink href="/kids"><NavLinkWrapper data-name="Kids">Kids</NavLinkWrapper></NavLink>
+          <NavLink href="/collections"><NavLinkWrapper data-name="Collections">Collections</NavLinkWrapper></NavLink>
         </DesktopNav>
         <MobileActions>
           <ShoppingBagButton>
@@ -120,10 +120,26 @@ const NavLink = styled.a`
   text-decoration: none;
   color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
+  overflow: hidden;
+  height: 1.6875rem;
 
   &:first-of-type {
     color: var(--color-secondary);
   }
 `;
+
+const NavLinkWrapper = styled.span`
+  display: grid;
+  transition: translate 500ms;
+
+  &::after {
+    content: attr(data-name);
+    font-weight: 700;
+  }
+
+  ${NavLink}:hover & {
+    translate: 0 -50%;
+  }
+`
 
 export default Header;
